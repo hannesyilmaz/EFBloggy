@@ -80,31 +80,34 @@ namespace EfBloggy
    
         public void InsertPost()
         {
-            BlogPost insertedPost = new BlogPost();
+            using (var db = new BlogContext())
+            {
+                BlogPost insertedPost = new BlogPost();
 
-            Header("Lägg till");
+                Header("Lägg till");
 
-            ShowAllBlogPostsBrief();
+                ShowAllBlogPostsBrief();
 
-            Write("Lägg till en ny title: ");
+                Write("Lägg till en ny title: ");
 
-            string newTitle = string.Format(Console.ReadLine());
+                string newTitle = string.Format(Console.ReadLine());
 
-            Write("Lägg till en ny författare: ");
+                Write("Lägg till en ny författare: ");
 
-            string newAuthor = string.Format(Console.ReadLine());
+                string newAuthor = string.Format(Console.ReadLine());
 
-            insertedPost.Title = newTitle;
+                insertedPost.Title = newTitle;
 
-            insertedPost.Author = newAuthor;
+                insertedPost.Author = newAuthor;
 
-            context.BlogPosts.Add(insertedPost);
+                db.Add(insertedPost);
 
-            context.SaveChanges();
+                db.SaveChanges();
 
-            Write("Nya bloggen har lagts till");
-            Console.ReadKey();
-            MainMenu();
+                Write("Nya bloggen har lagts till");
+                Console.ReadKey();
+                MainMenu();
+            }
 
         }
 
