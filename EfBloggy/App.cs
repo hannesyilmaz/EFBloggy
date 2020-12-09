@@ -80,7 +80,7 @@ namespace EfBloggy
    
         public void InsertPost()
         {
-            var insertedPost = new BlogPost();
+            BlogPost insertedPost = new BlogPost();
 
             Header("Lägg till");
 
@@ -98,7 +98,7 @@ namespace EfBloggy
 
             insertedPost.Author = newAuthor;
 
-            context.Add(insertedPost);
+            context.BlogPosts.Add(insertedPost);
 
             context.SaveChanges();
 
